@@ -77,8 +77,9 @@ def compare_strategies(
     years_to_payoff_early = calculate_years_to_payoff_sfe(
         loan_amount,
         interest_rate,
-        auto_monthly_payment + disposable_income,
-        write_off_years,
+        salary=salary,
+        write_off_years=write_off_years,
+        optional_extra_payment=disposable_income,
     )
     print(f"Years to payoff SFE if paying extra: {years_to_payoff_early:.2f} years")
     if years_to_payoff_early < write_off_years:
@@ -86,7 +87,7 @@ def compare_strategies(
             0,
             annual_return_rate,
             write_off_years - years_to_payoff_early,
-            optional_extra_payment=disposable_income,
+            monthly_contribution=disposable_income,
         )
         print(f"Investment after paying off SFE early: £{investment_after_payoff:.2f}")
 
@@ -95,8 +96,9 @@ def compare_strategies(
     years_to_payoff_split = calculate_years_to_payoff_sfe(
         loan_amount,
         interest_rate,
-        auto_monthly_payment + disposable_income_split,
-        write_off_years,
+        salary=salary,
+        write_off_years=write_off_years,
+        optional_extra_payment=disposable_income_split,
     )
     print(f"Years to payoff SFE with split payment: {years_to_payoff_split:.2f} years")
 
